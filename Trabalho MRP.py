@@ -304,7 +304,7 @@ def menu(cursor, con):
         elif opcao == "4":
             mostrar_relatorio(cursor)
         elif opcao == "5":
-            menu_Grafico_de_gestão(cursor)
+            menu_Grafico_de_Gestão(cursor)
         elif opcao == "6":
             previsao_reabastecimento(cursor)
         elif opcao == "7":
@@ -323,3 +323,4 @@ if __name__ == "__main__":
     finally:
 
         con.close()
+
