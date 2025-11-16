@@ -188,7 +188,7 @@ def previsao_reabastecimento(cursor):
     print(f"📅 Estimativa de término: {data_fim.strftime('%d/%m/%Y')}\n")
 
 # ------------------------------------
-#   GRÁFICOS (DASHBOARD)
+#   GRÁFICOS
 # ------------------------------------
 def grafico_evolucao(cursor):
     cursor.execute("SELECT id, nome, quantidade FROM produtos ORDER BY id")
@@ -256,7 +256,7 @@ def grafico_abc(cursor):
 def menu_dashboard(cursor):
     while True:
         print("""
------- DASHBOARD ------
+------ Grafico de Gestão ------
 1 - Evolução do estoque
 2 - Barras por categoria
 3 - Curva ABC
@@ -287,7 +287,7 @@ def menu(cursor, con):
 2 - Excluir produto
 3 - Movimentar estoque
 4 - Mostrar relatório
-5 - Dashboard
+5 - Grafico de Gestão
 6 - Previsão de reabastecimento
 7 - Sair
 ==========================
@@ -304,7 +304,7 @@ def menu(cursor, con):
         elif opcao == "4":
             mostrar_relatorio(cursor)
         elif opcao == "5":
-            menu_dashboard(cursor)
+            menu_Grafico_de_gestão(cursor)
         elif opcao == "6":
             previsao_reabastecimento(cursor)
         elif opcao == "7":
@@ -321,4 +321,5 @@ if __name__ == "__main__":
     try:
         menu(cursor, con)
     finally:
+
         con.close()
