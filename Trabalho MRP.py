@@ -251,12 +251,12 @@ def grafico_abc(cursor):
     plt.show()
 
 # ------------------------------------
-#   MENU DO DASHBOARD
+#   MENU DOS GRAFICOS
 # ------------------------------------
-def menu_dashboard(cursor):
+def menu_Grafico_de_gestão(cursor):
     while True:
         print("""
------- Grafico de Gestão ------
+------ Grafico de gestão ------
 1 - Evolução do estoque
 2 - Barras por categoria
 3 - Curva ABC
@@ -287,7 +287,7 @@ def menu(cursor, con):
 2 - Excluir produto
 3 - Movimentar estoque
 4 - Mostrar relatório
-5 - Grafico de Gestão
+5 - Grafico de gestão
 6 - Previsão de reabastecimento
 7 - Sair
 ==========================
@@ -304,7 +304,7 @@ def menu(cursor, con):
         elif opcao == "4":
             mostrar_relatorio(cursor)
         elif opcao == "5":
-            menu_Grafico_de_Gestão(cursor)
+            menu_Grafico_de_gestão(cursor)
         elif opcao == "6":
             previsao_reabastecimento(cursor)
         elif opcao == "7":
@@ -323,4 +323,3 @@ if __name__ == "__main__":
     finally:
 
         con.close()
-
