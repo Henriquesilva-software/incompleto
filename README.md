@@ -1,115 +1,24 @@
-Este projeto é um sistema de gestão de estoque inspirado em módulos reais de ERPs (Enterprise Resource Planning). O objetivo é permitir o controle básico de produtos, movimentações, relatórios e visualizações gráficas, tudo funcionando em linha de comando, com persistência usando SQLite.
+Este código implementa um sistema de gestão de estoque em Python, com funcionalidades inspiradas em módulos comuns de ERPs (Enterprise Resource Planning),
+e estrutura voltada para o controle, análise, manutenção e visualização de informações de produtos em estoque. O sistema é pensado para facilitar o cadastro,
+atualização, exclusão, monitoramento, geração de relatórios e gráficos gerenciais, utilizando boas práticas e conceitos próximos ao que grandes sistemas ERP adotam.
 
-Tecnologias utilizadas
+Bibliotecas usadas
+- sqlite3: utilizada para manipulação de bancos de dados SQLite, garantindo fácil armazenamento e consulta dos dados dos produtos e histórico de movimentações.
+- datetime: para tratamento e cálculo de datas, como tempo de reposição de produtos.
+- collections.defaultdict: auxilia na organização de dados e agrupamento por produto, especialmente útil para relatórios e gráficos históricos.
+- matplotlib.pyplot: para geração de gráficos gerenciais, como evolução do estoque, comparação entre categorias e curva ABC de custos.
 
-Python 3
+Por que dois bancos de dados?
+- O sistema utiliza duas tabelas principais (que podem estar em um ou dois arquivos dependendo da implementação física): uma para os produtos do estoque ("reservatorio.db")
+  e outra para o histórico de movimentações ("historicoestoque").
+- O uso de duas estruturas permite separar a tabela base dos produtos (dados estáticos: nome, categoria, preço, quantidade, estoque mínimo) do registro histórico de entradas
+  e saídas (dados dinâmicos: movimentação ao longo do tempo), facilitando consultas gerenciais sem misturar informações ou comprometer desempenho.
 
-SQLite3 — banco de dados local embutido no Python
-
-Matplotlib — criação dos gráficos do dashboard
-
-Datetime — manipulação de datas e cálculo de reabastecimento
-
-Funcionalidades principais
-Cadastro de produtos
-
-Nome
-
-Categoria
-
-Preço
-
-Quantidade inicial
-
-Registro automático da data da última movimentação
-
-Exclusão de produtos
-
-Remove um item do banco via ID.
-
-Confirmação antes da exclusão.
-
-Movimentação de estoque
-
-Entrada e saída de produtos.
-
-Impede saída maior que o estoque disponível.
-
-Atualiza automaticamente a data da última movimentação.
-
-Relatório completo
-
-Exibe para cada produto:
-
-ID
-
-Nome
-
-Categoria
-
-Preço
-
-Quantidade
-
-Última movimentação
-
-Alerta para estoque baixo (menos de 5 unidades)
-
-Previsão de Reabastecimento
-
-Calcula, com base no consumo médio diário informado, quanto tempo o estoque atual ainda dura e a data estimada de término.
-
-Dashboard gráfico
-
-Organizado em um menu separado com três gráficos:
-
-Evolução do estoque por produto
-
-Comparação de categorias (gráfico de barras)
-
-Curva ABC de custos de estoque
-
-Os gráficos fornecem visão gerencial semelhante a sistemas ERP reais.
-
-Organização do Banco de Dados (SQLite)
-
-A tabela produtos contém:
-
-Coluna	Tipo	Descrição
-id	INTEGER	Identificador único
-nome	TEXT	Nome do produto
-categoria	TEXT	Categoria geral
-preco	REAL	Preço unitário
-quantidade	INTEGER	Quantidade atual
-ultima_movimentacao	TEXT	Data/hora da última alteração
-
-A criação e atualização da tabela são automáticas ao rodar o programa.
-
-Como executar
-
-Instale as dependências:
-
-pip install matplotlib
-
-(SQLite já vem com o Python)
-
-Execute:
-
-python seu_arquivo.py
-
-O sistema cria automaticamente o banco estoque.db e abre o menu principal.
-
-Objetivo do projeto
-
-O código foi desenvolvido para fins educacionais, simulando as principais funcionalidades de um módulo de estoque de sistemas ERP.
-Ele demonstra:
-
-Persistência de dados
-
-Manipulação de banco SQLite
-
-Criação de dashboards
-
-Cálculo de previsões
-
-Lógica de negócios de estoque
+Funcionalidades presentes
+- Cadastro, exclusão e validação de produtos, incluindo controles de categoria, preço unitário, quantidade inicial e estoque mínimo.
+- Atualização dinâmica do estoque, permitindo entradas e saídas, com checagem do estoque mínimo para alertas automáticos.
+- Listagem do estoque com status de cada produto e detecção de itens em nível baixo de estoque.
+- Relatórios gerenciais com cálculos automáticos (giro de estoque, custo de manutenção de estoque, tempo de reposição e vendas no período).
+- Gráficos avançados: mostra evolução do estoque por produto, compara categorias e exibe curva ABC, fundamentando decisões de compra, reposição e análise financeira do estoque.
+- Cada uma dessas funções reflete práticas reais utilizadas em sistemas ERP, facilitando integração futura ou migração para plataformas maiores, além de permitir controle e
+  tomada de decisão baseada em dados.
